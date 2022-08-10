@@ -21,6 +21,7 @@
      https://blog.naver.com/PostList.naver?blogId=blogpeople&skinType=&skinId=&from=menu&userSelectMenu=true
      https://m.blog.naver.com/blogpeople
 #### 2. 카테고리 다운로드 - 입력한 네이버 블로그 게시글 링크와 같은 카테고리인 모든 게시글의 원본 이미지를 다운
+* 카테고리 다운로드는 링크를 여러 개 입력할 수 없음
 * 범위를 지정하여 다운로드 가능(범위를 입력하지 않으면 전부 다운)
 ##### 범위 입력 예시
     3 10    -3번부터 10번까지
