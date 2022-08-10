@@ -51,14 +51,15 @@ def showDialog():
     text = input("네이버 블로그 주소를 입력하세요\n")
     global onlyone
     onlyone = True
-    download(text)
+    textlist = text.split(" ")
+    for i in textlist:
+        download(i)
         
 def showDialog2():
     text = input('네이버 블로그 주소를 입력하세요\n')
-    text2 = input('범위 입력 (예시1 :1 9) (예시2 :-5 -1)\n')
     global onlyone
     onlyone = False
-    category_download(text, text2)
+    category_download(text)
             
 
 
@@ -105,9 +106,19 @@ def download(url):
             break
         urllib.request.urlretrieve(link, save_path+clean_text(link.split('/')[-1]))
     
-def category_download(url, url2):
+def category_download(url):
     global linklist
-    a = url2.split(" ")[0]
+    linklist = linkget(url)
+    if linklist == None:
+        print("Error : 주소가 올바르지 않습니다\n")
+        return
+    elif linklist == "phonoNotFound":
+        print("Error : 네이버 블로그 주소가 아닙니다\n")
+        return      
+    linklist.reverse()
+    print("카테고리 내에서 {}개의 게시물 발견".format(str(len(linklist))))
+    text2 = input('범위 입력 (예시1 :1 9) (예시2 :-5 -1) (입력하지 않으면 전부 다운)\n')
+    a = text2.split(" ")[0]
     try:
         if a == '':
             a = None
@@ -121,7 +132,7 @@ def category_download(url, url2):
         print("Error : 범위를 제대로 입력해 주세요\n")
         return
     try:
-        b = url2.split(" ")[1]
+        b = text2.split(" ")[1]
     except:
         b = 0
     try:
@@ -134,14 +145,6 @@ def category_download(url, url2):
     except:
         print("Error : 범위를 제대로 입력해 주세요\n")
         return            
-    linklist = linkget(url)
-    if linklist == None:
-        print("Error : 주소가 올바르지 않습니다\n")
-        return
-    elif linklist == "phonoNotFound":
-        print("Error : 네이버 블로그 주소가 아닙니다\n")
-        return      
-    linklist.reverse()
     linklist = linklist[a:b]    
     if linklist == []:
         print("Error : 범위를 제대로 입력해 주세요\n")
