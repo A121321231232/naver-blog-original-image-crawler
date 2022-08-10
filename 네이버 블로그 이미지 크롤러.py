@@ -20,7 +20,7 @@ def linkget(url):
             category = soup.find("a", class_="link sp_after")['href'].split("&")[-2].replace("categoryNo=", "")
         except:
             return "phonoNotFound"
-        blogId = url.split('/')[-2]
+        blogId = soup.find("meta", property="og:url")["content"].split('/')[-2]
         linklist = []
         end = False
         for i in range (1, 9999):
@@ -43,11 +43,10 @@ def linkget(url):
 
   
 def clean_text(inputString):
-    text_rmv = re.sub('[\\\/<>|*:?"]', ' ', inputString)
+    text_rmv = re.sub('[\\\/:*?"<>|]', ' ', inputString)
+    text_rmv = text_rmv.strip()
     return text_rmv
 
-
-        
 def showDialog():
     text = input("네이버 블로그 주소를 입력하세요\n")
     global onlyone
