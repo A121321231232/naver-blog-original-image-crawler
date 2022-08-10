@@ -3,6 +3,7 @@
 import requests
 from bs4 import BeautifulSoup
 import urllib.request
+import urllib.parse
 import os
 import re
 
@@ -86,7 +87,7 @@ def download(url):
     except:
         print("Error : 사진 파일을 찾을 수 없습니다\n")
         return
-    save_path = "./"+clean_text(title)+"\\"
+    save_path = "./"+clean_text(title)+"/"
     if not os.path.exists("./"+clean_text(title)):
         os.makedirs("./"+clean_text(title))
     for i in range(0, 9999):
@@ -104,7 +105,7 @@ def download(url):
                 print(completed)
                 
             break
-        urllib.request.urlretrieve(link, save_path+clean_text(link.split('/')[-1]))
+        urllib.request.urlretrieve(link, save_path+clean_text(urllib.parse.unquote(link.split('/')[-1])))
     
 def category_download(url):
     global linklist
