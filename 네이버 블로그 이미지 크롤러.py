@@ -20,7 +20,7 @@ def linkget(url):
         try:
             category = soup.find("a", class_="link sp_after")['href'].split("&")[-2].replace("categoryNo=", "")
         except:
-            return "phonoNotFound"
+            return "phooNotFound"
         blogId = soup.find("meta", property="og:url")["content"].split('/')[-2]
         linklist = []
         end = False
@@ -113,7 +113,7 @@ def category_download(url):
     if linklist == None:
         print("Error : 주소가 올바르지 않습니다\n")
         return
-    elif linklist == "phonoNotFound":
+    elif linklist == "photoNotFound":
         print("Error : 네이버 블로그 주소가 아닙니다\n")
         return      
     linklist.reverse()
