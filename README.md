@@ -21,7 +21,7 @@
      https://blog.naver.com/blogpeople/222844066273 #PC 버전
      https://blog.naver.com/PostView.naver?blogId=blogpeople&logNo=222844066273&categoryNo=72&parentCategoryNo=-1&viewDate=&currentPage=&postListTopCurrentPage=&isAfterWrite=true #PC 버전
      https://m.blog.naver.com/blogpeople/222844066273 #모바일 버전
-##### 잘못된 네이버 블로그 링크 예시(게시글 링크가 포함되어 있지 않음
+##### 잘못된 네이버 블로그 링크 예시(게시글 링크가 포함되어 있지 않음)
      https://blog.naver.com/blogpeople
      https://blog.naver.com/PostList.naver?blogId=blogpeople&skinType=&skinId=&from=menu&userSelectMenu=true
      https://m.blog.naver.com/blogpeople
