@@ -37,6 +37,8 @@ def linkget(url):
                     for iii in category:
                         if iii.find("parent") == -1 and iii.find("ategory") != -1:
                             category = iii.replace("categoryNo=", "")
+                    if str(type(category)) == "<class 'list'>":
+                        return "photoNotFound"
             except:
                 return "photoNotFound"
         linklist = []
@@ -273,7 +275,7 @@ while True:
         os.chdir(realdir)
         pre_savepath = os.path.abspath(input("변경할 저장 경로를 입력하세요\n")).replace("\\", "/")
         try:
-            os.chdir(pre_savepath)
+            os.chdir(pre_savepath)  
             setting = open(realdir+"/setting.txt", "w")
             setting.write(pre_savepath)
             currentdir = pre_savepath
