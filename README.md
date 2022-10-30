@@ -30,6 +30,9 @@
 * 게시글 링크를 입력하면 그 게시글과 같은 작은 카테고리에 속하는 모든 게시글의 원본 이미지를 다운받음
 * 작은 카테고리 링크를 입력하면 그 작은 카테고리에 포함되는 모든 게시글의 원본 이미지를 다운받음
 * 큰 카테고리 링크를 입력하면 그 큰 카테고리 내에서 작은 카테고리에 포함되지 않은 모든 게시글의 원본 이미지를 다운받음 (큰 카테고리의 모든 게시글이 작은 카테고리에 포함되어 있는 경우에는 다운로드되지 않음)
+![스크린샷(31)](https://user-images.githubusercontent.com/67197446/198900590-6914bc90-10dd-4531-a852-60eb0b1f30f3.png)
+
+
 ##### 올바른 카테고리 링크 예시
      https://blog.naver.com/PostList.naver?blogId=blogpeople&from=postList&categoryNo=51 #PC 버전
      https://blog.naver.com/PostList.naver?blogId=blogpeople&from=postList&categoryNo=50&parentCategoryNo=50 #PC 버전
