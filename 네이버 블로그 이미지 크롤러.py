@@ -187,7 +187,13 @@ def download(url):
                 print(completed)
                 
             break
-        urllib.request.urlretrieve(link, save_path+clean_text(urllib.parse.unquote(link.split('/')[-1])))
+        if fileNameOption == "1":
+            fileName = str(i+1) + "." + clean_text(urllib.parse.unquote(link.split('/')[-1]).split('.')[-1])
+        elif fileNameOption == "2":
+            fileName = str(i+1) + "_" + clean_text(urllib.parse.unquote(link.split('/')[-1]))
+        elif fileNameOption == "3":
+            fileName = clean_text(urllib.parse.unquote(link.split('/')[-1]))
+        urllib.request.urlretrieve(link, save_path+fileName)
     
 def category_download(url):
     global linklist
@@ -250,6 +256,8 @@ def category_download(url):
     print("")
 
 #실제 코드 실행
+global fileNameOption
+fileNameOption = "1"
 realdir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(realdir)
 try:
@@ -260,7 +268,7 @@ except:
     currentdir = realdir
 print("###네이버 블로그 이미지 크롤러###\n")
 while True:
-    select = input("다운로드:1 / 개별 카테고리 다운로드:2 / 전체 카테고리 다운로드:3 / 저장 경로 변경:4\n")
+    select = input("다운로드:1 / 개별 카테고리 다운로드:2 / 전체 카테고리 다운로드:3 / 설정 변경:4\n")
     if select == "1":
         print("다운로드 선택")
         showDialog()
@@ -271,18 +279,32 @@ while True:
         print("전체 카테고리 다운로드 선택")
         showDialog3()
     elif select == "4":
-        print("현재 저장 경로: "+currentdir)
-        os.chdir(realdir)
-        pre_savepath = os.path.abspath(input("변경할 저장 경로를 입력하세요\n")).replace("\\", "/")
-        try:
-            os.chdir(pre_savepath)  
-            setting = open(realdir+"/setting.txt", "w")
-            setting.write(pre_savepath)
-            currentdir = pre_savepath
-            setting.close()
-        except:
-            print("Error : 제대로 된 저장 경로를 입력해 주세요\n")
-            os.chdir(currentdir)
-            setting.close()
+        select = input("저장 경로 변경:1 / 파일 이름 저장 방식 변경:2\n")
+        if select == "1":
+            print("현재 저장 경로: "+currentdir)
+            os.chdir(realdir)
+            pre_savepath = os.path.abspath(input("변경할 저장 경로를 입력하세요\n")).replace("\\", "/")
+            try:
+                os.chdir(pre_savepath)  
+                setting = open(realdir+"/setting.txt", "w")
+                setting.write(pre_savepath)
+                currentdir = pre_savepath
+                setting.close()
+            except:
+                print("Error : 제대로 된 저장 경로를 입력해 주세요\n")
+                os.chdir(currentdir)
+                setting.close()
+        elif select == "2":
+            select = input("파일 이름 숫자로 쓰기(원본 이미지 제목 무시):1 / 원래 이름 앞에 접두어로 숫자 붙이기:2 / 원래 이름 그대로 쓰기(같은 이름의 파일이 있으면 한 쪽이 안 받아질 수 있음):3\n")
+            if select == "1": 
+                fileNameOption = "1"
+            elif select == "2":
+                fileNameOption = "2"
+            elif select == "3":
+                fileNameOption = "3"
+            else:
+                print("Error : 1, 2, 3 중 하나를 입력해 주세요")
+        else:
+            print("Error : 1, 2 중 하나를 입력해 주세요\n")
     else:
         print("Error : 1, 2, 3, 4 중 하나를 입력해 주세요\n")
