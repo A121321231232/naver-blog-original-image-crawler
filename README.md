@@ -36,10 +36,9 @@
 
 
 ##### 올바른 카테고리 링크 예시
+     https://blog.naver.com/blogpeople/221053474321 #PC 버전
      https://blog.naver.com/PostList.naver?blogId=blogpeople&from=postList&categoryNo=51 #PC 버전
-     https://blog.naver.com/PostList.naver?blogId=blogpeople&from=postList&categoryNo=50&parentCategoryNo=50 #PC 버전
      https://m.blog.naver.com/blogpeople?categoryNo=51#postlist_block #모바일 버전
-     https://m.blog.naver.com/blogpeople?categoryNo=50#postlist_block #모바일 버전
 * 범위를 지정하여 다운로드 가능(범위를 입력하지 않으면 전부 다운)
 ##### 범위 입력 예시
     3 10    -3번부터 10번까지
