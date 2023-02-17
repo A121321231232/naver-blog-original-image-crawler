@@ -172,10 +172,32 @@ def download(url):
     save_path = "./"+clean_text(title)+"/"
     if not os.path.exists("./"+clean_text(title)):
         os.makedirs("./"+clean_text(title))
+    listDir = os.listdir(save_path)
+    listSize = {}
+    for i in listDir:
+        listSize[i] = os.path.getsize(save_path + i)
     for i in range(0, 9999):
         a = i*2 + 1
         try:
             link = "https://blogfiles.pstatic.net" +file[a]
+            try:
+                response = requests.head(link, allow_redirects = True)
+            except:
+                return
+            fileSize = response.headers.get("Content-Length", -1)
+            
+            if fileNameOption == "1":
+                fileName = str(i+1) + "." + clean_text(urllib.parse.unquote(link.split('/')[-1]).split('.')[-1])
+            elif fileNameOption == "2":
+                fileName = str(i+1) + "_" + clean_text(urllib.parse.unquote(link.split('/')[-1]))
+            elif fileNameOption == "3":
+                fileName = clean_text(urllib.parse.unquote(link.split('/')[-1]))
+            
+            try:
+                if listSize[fileName] == int(fileSize):
+                    continue
+            except:
+                pass
         except:
             global onlyone
             if onlyone == True:  
@@ -187,12 +209,6 @@ def download(url):
                 print(completed)
                 
             break
-        if fileNameOption == "1":
-            fileName = str(i+1) + "." + clean_text(urllib.parse.unquote(link.split('/')[-1]).split('.')[-1])
-        elif fileNameOption == "2":
-            fileName = str(i+1) + "_" + clean_text(urllib.parse.unquote(link.split('/')[-1]))
-        elif fileNameOption == "3":
-            fileName = clean_text(urllib.parse.unquote(link.split('/')[-1]))
         urllib.request.urlretrieve(link, save_path+fileName)
     
 def category_download(url):
