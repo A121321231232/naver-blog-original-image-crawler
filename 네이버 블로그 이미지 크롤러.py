@@ -118,6 +118,7 @@ def linkget_allcategory(url):
 def clean_text(inputString):
     text_rmv = re.sub('[\\\/:*?"<>|]', ' ', inputString)
     text_rmv = text_rmv.strip()
+    text_rmv = text_rmv.rstrip(".")
     return text_rmv
 
 def showDialog():
